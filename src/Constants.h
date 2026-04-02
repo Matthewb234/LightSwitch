@@ -6,10 +6,10 @@
 #define LIGHTSWITCH_CONSTANTS_H
 
 namespace NetworkConstants {
-    constexpr const char* SSID = "RESNET-PROTECTED";
-    constexpr const char* IDENTITY = "mbeaudin";
-    constexpr const char* USERNAME = "mbeaudin";
-    constexpr const char* PASSWORD = "Reptille!4393";
+    constexpr const char* SSID = "SmartHub";
+    constexpr const char* PASSWORD = "Reptille!23";
+    constexpr const char* MQTT_IP = "192.168.4.1";
+    constexpr int MQTT_PORT = 1883;
 };
 
 namespace ServoConstants {
