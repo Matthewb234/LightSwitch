@@ -1,5 +1,6 @@
 #include <Arduino.h>
 
+#include "Constants.h"
 #include "ServoManager.h"
 #include "network/BLEManager.h"
 
@@ -8,14 +9,12 @@ BLEManager *ble_manager;
 
 void setup(){
     Serial.begin(115200);
-    delay(3000);
     Serial.println("Started");
-    servo_manager = new ServoManager(1, 2);
+    servo_manager = new ServoManager(ServoConstants::ROCKER_PORT, ServoConstants::DIMMER_PORT);
     ble_manager = new BLEManager(*servo_manager);
     ble_manager->initialize();
 }
 
 void loop(){
-    Serial.println("Running");
-    delay(5000);
+    // servo_manager->printValues();
 }

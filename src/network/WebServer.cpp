@@ -13,12 +13,12 @@ void WebServer::initialize() {
     WiFi.mode(WIFI_STA);
     WiFi.disconnect(true);
 
-    esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)Constants::IDENTITY, strlen(Constants::IDENTITY));
+    esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)NetworkConstants::IDENTITY, strlen(NetworkConstants::IDENTITY));
     // esp_wifi_sta_wpa2_ent_set_username((uint8_t *)Constants::USERNAME, strlen(Constants::USERNAME));
-    esp_wifi_sta_wpa2_ent_set_password((uint8_t *)Constants::PASSWORD, strlen(Constants::PASSWORD));
+    esp_wifi_sta_wpa2_ent_set_password((uint8_t *)NetworkConstants::PASSWORD, strlen(NetworkConstants::PASSWORD));
     esp_wifi_sta_wpa2_ent_enable();
 
-    WiFi.begin(Constants::SSID);
+    WiFi.begin(NetworkConstants::SSID);
     int attempts = 0;
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);

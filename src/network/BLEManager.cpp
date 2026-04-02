@@ -20,13 +20,25 @@ public:
 
         int light_level = doc["light_level"];
         bool light_on = doc["light_on"];
-        servo_manager.updateServos(light_level * 33, light_on);
+        servo_manager.updateServos(light_level, light_on);
+    }
+};
+
+class ServerCallback : public BLEServerCallbacks {
+    void onDisconnect(BLEServer *server) override {
+        Serial.println("Client disconnected, restarting advertising");
+        BLEDevice::getAdvertising()->start();
+    }
+
+    void onConnect(BLEServer *server) override {
+        Serial.println("Client connected");
     }
 };
 
 void BLEManager::initialize() {
     BLEDevice::init("LightSwitch");
     server = BLEDevice::createServer();
+    server->setCallbacks(new ServerCallback());
 
     BLEService *service = server->createService(SERVICE_UUID);
     characteristic = service->createCharacteristic(
